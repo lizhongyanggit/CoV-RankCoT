@@ -12,69 +12,7 @@ CoV-RankCoT extends the RankCoT knowledge refinement framework with three main c
 
 The framework first refines retrieved evidence and generates an initial answer. The initial answer is then evaluated through a multidimensional confidence mechanism. If the confidence score satisfies the predefined threshold, the answer is directly returned. Otherwise, the original query is diagnosed by a fine-tuned MacBERT model and rewritten according to the predicted defect category, followed by secondary retrieval and knowledge refinement.
 
----
 
-## Method Overview
-
-The overall CoV-RankCoT pipeline contains the following stages:
-
-1. initial retrieval;
-2. RankCoT-based knowledge refinement;
-3. initial answer generation;
-4. multidimensional confidence evaluation;
-5. query defect diagnosis for low-confidence samples;
-6. category-guided query rewriting;
-7. secondary retrieval;
-8. knowledge refinement with updated evidence;
-9. final answer generation.
-
-The decision mechanism is:
-
-```text
-Initial Query Q
-      |
-      v
-Initial Retrieval
-      |
-      v
-RankCoT Knowledge Refinement
-      |
-      v
-Initial Answer
-      |
-      v
-Multidimensional Confidence Evaluation
-      |
-      v
-Confidence Score epsilon
-      |
-      +-----------------------------+
-      |                             |
- epsilon >= tau               epsilon < tau
-      |                             |
-      v                             v
-Return Initial Answer       Query Defect Diagnosis
-                                    |
-                                    v
-                         Category-Guided Rewriting
-                                    |
-                                    v
-                            Rewritten Query Q'
-                                    |
-                                    v
-                           Secondary Retrieval
-                                    |
-                                    v
-                         Updated External Evidence
-                                    |
-                                    v
-                         RankCoT Knowledge Refinement
-                                    |
-                                    v
-                              Final Answer
-```
-
----
 
 ## Repository Structure
 
@@ -285,29 +223,7 @@ The original query is retained as an intent constraint in the subsequent knowled
 
 The query optimization module therefore follows:
 
-```text
-Original Query Q
-      |
-      v
-MacBERT Diagnosis
-      |
-      v
-Predicted Defect Category
-      |
-      v
-Category-Specific Rewriting Strategy
-      |
-      v
-Rewritten Query Q'
-      |
-      v
-Secondary Retrieval
-      |
-      v
-Updated Evidence D'
-```
 
----
 
 ## RankCoT-Based Knowledge Refinement
 
