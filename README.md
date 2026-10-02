@@ -124,11 +124,11 @@ The implementation uses or refers to the following open-source models and reposi
 
 | Model / Method | GitHub Repository |
 | --- | --- |
-| Llama3-8B-Instruct | `meta-llama/llama3` |
-| MiniCPM3-4B | `OpenBMB/MiniCPM` |
-| Qwen2.5-14B-Instruct | `QwenLM/Qwen2.5` |
-| MacBERT-base | `ymcui/MacBERT` |
-| BGE-M3 | `FlagOpen/FlagEmbedding` |
-| RankCoT | `NEUIR/RankCoT` |
+| Llama3-8B-Instruct |[ `meta-llama/llama3`](https://github.com/meta-llama/llama3?utm_source=chatgpt.com) |
+| MiniCPM3-4B | [`OpenBMB/MiniCPM`](https://github.com/OpenBMB/MiniCPM?utm_source=chatgpt.com) |
+| Qwen2.5-14B-Instruct | [`QwenLM/Qwen2.5`](https://github.com/QwenLM/Qwen2.5?utm_source=chatgpt.com) |
+| MacBERT-base | [`ymcui/MacBERT`](https://github.com/ymcui/MacBERT?utm_source=chatgpt.com) |
+| BGE-M3 | [`FlagOpen/FlagEmbedding`](https://github.com/FlagOpen/FlagEmbedding?utm_source=chatgpt.com) |
+| RankCoT | [`NEUIR/RankCoT`](https://github.com/NEUIR/RankCoT?utm_source=chatgpt.com) |
 
 Please follow the licenses and usage requirements of the corresponding upstream repositories.
