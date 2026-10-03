@@ -128,11 +128,6 @@ python query_diagnosis.py --mode diagnose
 python query_rewrite.py
 ```
 
-Or use the unified entry:
-
-```bash
-python main.py
-```
 ## Data
 | RankCoT Data | [Google Drive](https://drive.google.com/drive/folders/1QJ63-90RIdjyKwAdCMZKLz5KiFfxEkoq?usp=sharing) |
 ## Models and Upstream Repositories
