@@ -173,7 +173,7 @@ Before running the experiments, please check the following settings:
 
 Model checkpoints and large-scale datasets may need to be downloaded separately according to the corresponding upstream licenses and access requirements.
 
-Do not commit API keys or other private credentials to the repository.
+
 
 ## License
 
