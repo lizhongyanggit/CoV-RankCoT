@@ -14,17 +14,15 @@ CoV-RankCoT/
 │   │   ├── querypassage_to_CoT0.py
 │   │   └── template.py
 │   │
-│   ├── answer_generation/
-│   │   ├── evaluate.py
-│   │   ├── queryCoT_to_answer1.py
-│   │   ├── querypassage_to_CoT1.py
-│   │   └── template.py
-│   │
-│   ├── merged_rankcot_model/
-│   ├── meta-llama/
-│   ├── scripts/
-│   └── README.md
+│   └── answer_generation/
+│       ├── evaluate.py
+│       ├── queryCoT_to_answer1.py
+│       ├── querypassage_to_CoT1.py
+│       └── template.py
 │
+├── merged_rankcot_model/
+├── meta-llamaMeta-Llama-3-8B-Instruct/
+├── scripts/
 ├── confidence_evaluation.py
 ├── query_diagnosis.py
 ├── query_rewrite.py
@@ -56,6 +54,8 @@ Run the multidimensional confidence evaluation module:
 ```bash
 python confidence_evaluation.py
 ```
+
+The module evaluates the initial answer from multiple dimensions, including question consistency, evidence support, and factual and logical consistency.
 
 Low-confidence samples are passed to the query diagnosis and query optimization stages.
 
@@ -95,6 +95,8 @@ The corresponding rewriting strategies are:
 - terminology normalization;
 - conservative expansion.
 
+The rewritten query is used for secondary retrieval, while the original query is retained as the user-intent constraint for the subsequent knowledge refinement and answer generation stages.
+
 ## RankCoT Knowledge Refinement
 
 The knowledge refinement component follows the RankCoT implementation.
@@ -103,7 +105,7 @@ Generate refined CoT knowledge:
 
 ```bash
 python Knowledge_Refinement/answer_generation/querypassage_to_CoT1.py \
-  --model_path Knowledge_Refinement/merged_rankcot_model \
+  --model_path merged_rankcot_model \
   --data_path nq_low_confidence_retrieved_GPT.jsonl \
   --output_name nq_low_confidence_retrieved_GPT_COT.jsonl \
   --max_psg_length 1500
@@ -113,14 +115,16 @@ Generate answers from the refined knowledge:
 
 ```bash
 python Knowledge_Refinement/answer_generation/queryCoT_to_answer1.py \
-  --model_path Knowledge_Refinement/merged_rankcot_model \
+  --model_path merged_rankcot_model \
   --data_path nq_low_confidence_retrieved_GPT_COT.jsonl \
   --output_name nq_low_confidence_retrieved_answer_GPT_all.jsonl
 ```
 
+The paths of the model checkpoint and input/output files can be modified according to the local environment.
+
 ## Full Pipeline
 
-Run the main modules sequentially:
+Run the main CoV-RankCoT modules sequentially:
 
 ```bash
 python confidence_evaluation.py
@@ -134,11 +138,17 @@ Or use the unified entry:
 python main.py
 ```
 
+The RankCoT-based knowledge refinement and final answer generation stages can then be executed using the commands provided above.
+
 ## Data
+
+The public data used by the official RankCoT implementation can be obtained from the following link:
 
 | Resource | Link |
 | --- | --- |
 | RankCoT Data | [Google Drive](https://drive.google.com/drive/folders/1QJ63-90RIdjyKwAdCMZKLz5KiFfxEkoq?usp=sharing) |
+
+The downloaded RankCoT data can be organized according to the original RankCoT repository.
 
 ## Models and Upstream Repositories
 
@@ -153,8 +163,26 @@ The implementation uses or refers to the following open-source models and reposi
 | BGE-M3 | [`FlagOpen/FlagEmbedding`](https://github.com/FlagOpen/FlagEmbedding) |
 | RankCoT | [`NEUIR/RankCoT`](https://github.com/NEUIR/RankCoT) |
 
+Please follow the licenses and usage requirements of the corresponding upstream repositories.
+
+## Notes
+
+Before running the experiments, please check the following settings:
+
+- model checkpoint paths;
+- input and output data paths;
+- retrieval corpus configuration;
+- MacBERT checkpoint;
+- BGE-M3 configuration;
+- large language model API configuration;
+- dependencies listed in `requirements.txt`.
+
+Model checkpoints and large-scale datasets may need to be downloaded separately according to the corresponding upstream licenses and access requirements.
+
+Do not commit API keys or other private credentials to the repository.
+
 ## License
 
-No license has been selected for the newly implemented components of this repository.
+No license has currently been selected for the newly implemented components of this repository.
 
 Third-party models, datasets, and code remain subject to their respective original licenses and usage requirements. Please review and comply with the corresponding upstream licenses before redistribution or public release.
