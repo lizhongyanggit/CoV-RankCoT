@@ -9,6 +9,22 @@ This repository provides the implementation of **CoV-RankCoT**, including multid
 ```text
 CoV-RankCoT/
 ├── Knowledge_Refinement/
+│   ├── CoTdata_generation/
+│   │   ├── queryCoT_to_answer.py
+│   │   ├── querypassage_to_CoT.py
+│   │   └── template.py
+│   │
+│   ├── answer_generation/
+│   │   ├── evaluate.py
+│   │   ├── queryCoT_to_answer.py
+│   │   ├── querypassage_to_CoT.py
+│   │   └── template.py
+│   │
+│   ├── merged_rankcot_model/
+│   ├── meta-llama/
+│   ├── scripts/
+│   └── README.md
+│
 ├── confidence_evaluation.py
 ├── query_diagnosis.py
 ├── query_rewrite.py
@@ -41,7 +57,7 @@ Run the multidimensional confidence evaluation module:
 python confidence_evaluation.py
 ```
 
-Low-confidence samples are passed to the query diagnosis and optimization stages.
+Low-confidence samples are passed to the query diagnosis and query optimization stages.
 
 ## Query Defect Diagnosis
 
@@ -72,7 +88,7 @@ Run category-guided query rewriting and secondary retrieval:
 python query_rewrite.py
 ```
 
-The four rewriting strategies are:
+The corresponding rewriting strategies are:
 
 - semantic disambiguation;
 - information completion;
@@ -86,8 +102,8 @@ The knowledge refinement component follows the RankCoT implementation.
 Generate refined CoT knowledge:
 
 ```bash
-python src/answer_generation/querypassage_to_CoT.py \
-  --model_path /root/autodl-tmp/merged_rankcot_model \
+python Knowledge_Refinement/answer_generation/querypassage_to_CoT.py \
+  --model_path Knowledge_Refinement/merged_rankcot_model \
   --data_path nq_low_confidence_retrieved_GPT.jsonl \
   --output_name nq_low_confidence_retrieved_GPT_COT.jsonl \
   --max_psg_length 1500
@@ -96,10 +112,10 @@ python src/answer_generation/querypassage_to_CoT.py \
 Generate answers from the refined knowledge:
 
 ```bash
-python src/answer_generation/queryCoT_to_answer.py \
-  --model_path /root/autodl-tmp/merged_rankcot_model \
-  --data_path /root/autodl-tmp/nq_low_confidence_retrieved_GPT_COT.jsonl \
-  --output_name /root/autodl-tmp/nq_low_confidence_retrieved_answer_GPT_all.jsonl
+python Knowledge_Refinement/answer_generation/queryCoT_to_answer.py \
+  --model_path Knowledge_Refinement/merged_rankcot_model \
+  --data_path nq_low_confidence_retrieved_GPT_COT.jsonl \
+  --output_name nq_low_confidence_retrieved_answer_GPT_all.jsonl
 ```
 
 ## Full Pipeline
@@ -122,13 +138,13 @@ python main.py
 
 The implementation uses or refers to the following open-source models and repositories:
 
-| Model / Method | GitHub Repository |
+| Model / Method | Repository |
 | --- | --- |
-| Llama3-8B-Instruct |[ `meta-llama/llama3`](https://github.com/meta-llama/llama3?utm_source=chatgpt.com) |
-| MiniCPM3-4B | [`OpenBMB/MiniCPM`](https://github.com/OpenBMB/MiniCPM?utm_source=chatgpt.com) |
-| Qwen2.5-14B-Instruct | [`QwenLM/Qwen2.5`](https://github.com/QwenLM/Qwen2.5?utm_source=chatgpt.com) |
-| MacBERT-base | [`ymcui/MacBERT`](https://github.com/ymcui/MacBERT?utm_source=chatgpt.com) |
-| BGE-M3 | [`FlagOpen/FlagEmbedding`](https://github.com/FlagOpen/FlagEmbedding?utm_source=chatgpt.com) |
-| RankCoT | [`NEUIR/RankCoT`](https://github.com/NEUIR/RankCoT?utm_source=chatgpt.com) |
+| Llama3-8B-Instruct | [`meta-llama/llama3`](https://github.com/meta-llama/llama3) |
+| MiniCPM3-4B | [`OpenBMB/MiniCPM`](https://github.com/OpenBMB/MiniCPM) |
+| Qwen2.5-14B-Instruct | [`QwenLM/Qwen2.5`](https://github.com/QwenLM/Qwen2.5) |
+| MacBERT-base | [`ymcui/MacBERT`](https://github.com/ymcui/MacBERT) |
+| BGE-M3 | [`FlagOpen/FlagEmbedding`](https://github.com/FlagOpen/FlagEmbedding) |
+| RankCoT | [`NEUIR/RankCoT`](https://github.com/NEUIR/RankCoT) |
 
 Please follow the licenses and usage requirements of the corresponding upstream repositories.
