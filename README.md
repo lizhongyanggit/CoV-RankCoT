@@ -133,7 +133,8 @@ Or use the unified entry:
 ```bash
 python main.py
 ```
-
+## Data
+| RankCoT Data | [Google Drive](https://drive.google.com/drive/folders/1QJ63-90RIdjyKwAdCMZKLz5KiFfxEkoq?usp=sharing) |
 ## Models and Upstream Repositories
 
 The implementation uses or refers to the following open-source models and repositories:
