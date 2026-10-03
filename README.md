@@ -147,5 +147,9 @@ The implementation uses or refers to the following open-source models and reposi
 | MacBERT-base | [`ymcui/MacBERT`](https://github.com/ymcui/MacBERT) |
 | BGE-M3 | [`FlagOpen/FlagEmbedding`](https://github.com/FlagOpen/FlagEmbedding) |
 | RankCoT | [`NEUIR/RankCoT`](https://github.com/NEUIR/RankCoT) |
+## license
+
+The license has not been determined yet. Before making the repository public, add the author and obtain approval for the upstream dataset/code license.****
+
 
 Please follow the licenses and usage requirements of the corresponding upstream repositories.
