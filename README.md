@@ -10,14 +10,14 @@ This repository provides the implementation of **CoV-RankCoT**, including multid
 CoV-RankCoT/
 ├── Knowledge_Refinement/
 │   ├── CoTdata_generation/
-│   │   ├── queryCoT_to_answer.py
-│   │   ├── querypassage_to_CoT.py
+│   │   ├── queryCoT_to_answer0.py
+│   │   ├── querypassage_to_CoT0.py
 │   │   └── template.py
 │   │
 │   ├── answer_generation/
 │   │   ├── evaluate.py
-│   │   ├── queryCoT_to_answer.py
-│   │   ├── querypassage_to_CoT.py
+│   │   ├── queryCoT_to_answer1.py
+│   │   ├── querypassage_to_CoT1.py
 │   │   └── template.py
 │   │
 │   ├── merged_rankcot_model/
@@ -102,7 +102,7 @@ The knowledge refinement component follows the RankCoT implementation.
 Generate refined CoT knowledge:
 
 ```bash
-python Knowledge_Refinement/answer_generation/querypassage_to_CoT.py \
+python Knowledge_Refinement/answer_generation/querypassage_to_CoT1.py \
   --model_path Knowledge_Refinement/merged_rankcot_model \
   --data_path nq_low_confidence_retrieved_GPT.jsonl \
   --output_name nq_low_confidence_retrieved_GPT_COT.jsonl \
@@ -112,7 +112,7 @@ python Knowledge_Refinement/answer_generation/querypassage_to_CoT.py \
 Generate answers from the refined knowledge:
 
 ```bash
-python Knowledge_Refinement/answer_generation/queryCoT_to_answer.py \
+python Knowledge_Refinement/answer_generation/queryCoT_to_answer1.py \
   --model_path Knowledge_Refinement/merged_rankcot_model \
   --data_path nq_low_confidence_retrieved_GPT_COT.jsonl \
   --output_name nq_low_confidence_retrieved_answer_GPT_all.jsonl
@@ -128,8 +128,18 @@ python query_diagnosis.py --mode diagnose
 python query_rewrite.py
 ```
 
+Or use the unified entry:
+
+```bash
+python main.py
+```
+
 ## Data
+
+| Resource | Link |
+| --- | --- |
 | RankCoT Data | [Google Drive](https://drive.google.com/drive/folders/1QJ63-90RIdjyKwAdCMZKLz5KiFfxEkoq?usp=sharing) |
+
 ## Models and Upstream Repositories
 
 The implementation uses or refers to the following open-source models and repositories:
@@ -142,6 +152,9 @@ The implementation uses or refers to the following open-source models and reposi
 | MacBERT-base | [`ymcui/MacBERT`](https://github.com/ymcui/MacBERT) |
 | BGE-M3 | [`FlagOpen/FlagEmbedding`](https://github.com/FlagOpen/FlagEmbedding) |
 | RankCoT | [`NEUIR/RankCoT`](https://github.com/NEUIR/RankCoT) |
-## license
 
-The license has not been determined yet. Before making the repository public, add the author and obtain approval for the upstream dataset/code license.Please follow the licenses and usage requirements of the corresponding upstream repositories.
+## License
+
+No license has been selected for the newly implemented components of this repository.
+
+Third-party models, datasets, and code remain subject to their respective original licenses and usage requirements. Please review and comply with the corresponding upstream licenses before redistribution or public release.
