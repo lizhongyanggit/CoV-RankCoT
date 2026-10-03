@@ -132,12 +132,6 @@ python query_diagnosis.py --mode diagnose
 python query_rewrite.py
 ```
 
-Or use the unified entry:
-
-```bash
-python main.py
-```
-
 The RankCoT-based knowledge refinement and final answer generation stages can then be executed using the commands provided above.
 
 ## Data
